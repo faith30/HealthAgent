@@ -1,0 +1,8 @@
+# Optional bridge only. Web image validation dependencies are in requirements.txt.
+# The bridge uses standard-library temporary files and base64, not Pillow.
+# wxautox4 is the author's licensed Plus package; no purchase or activation is
+# performed by this project. Check your WeChat client compatibility first.
+# Install only in a separate environment after reviewing the author's terms.
+# A version is intentionally not pinned: no wxautox4 build was installed or
+# validated with this user's WeChat account. Record your tested version before use.
+wxautox4; sys_platform == 'win32'

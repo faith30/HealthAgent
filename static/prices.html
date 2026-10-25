@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>模型 API 费用对比 · 家人安心记</title><style>
+:root{color-scheme:light;font-family:"Microsoft YaHei UI","PingFang SC",sans-serif;color:#213c37;background:#f5f4ed}*{box-sizing:border-box}body{margin:0;padding:36px 22px}main{max-width:1120px;margin:auto}a{color:#14675b}h1{font-size:32px;margin:16px 0}h2{font-size:22px}p,li{line-height:1.8}small,.muted{color:#65746d}.card{background:#fff;border:1px solid #e0e6de;border-radius:18px;padding:25px;margin-top:22px}.lead{background:#e7f0e8;padding:20px 24px;border-radius:15px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:880px;font-size:15px}th,td{text-align:left;border-bottom:1px solid #e5e9e1;padding:17px 12px;vertical-align:top}th{background:#f1f5ee;font-weight:600}td small{display:block;margin-top:6px}code{font-family:Consolas,monospace;font-size:14px}strong{color:#155d50}.cost{font-size:18px;font-weight:700;white-space:nowrap}.tag{display:inline-block;border:1px solid #c8dccf;border-radius:20px;padding:5px 11px;font-size:13px;color:#225f52}.back{display:inline-block;text-decoration:none}footer{margin:24px 0;color:#65746d;font-size:13px}@media(max-width:600px){body{padding:22px 14px}h1{font-size:27px}.card{padding:18px}}
+</style></head><body><main>
+<a class="back" href="/">← 返回家人安心记</a>
+<p><span class="tag">官方 API 按量价格 · 2026-10-25 核验</span></p>
+<h1>给家庭助手选一个合适的模型</h1>
+<p class="muted">这里比较文本模型的调用费用。没有购买任何额度，也没有接通真实模型。应用会员、微信接入授权和托管费用不包含在内。</p>
+<div class="lead"><strong>统一计算方法</strong><br>每月 100 万输入 + 20 万输出 tokens，输入全部未命中缓存。示例月费 = 输入单价 + 输出单价 × 0.2。人民币与美元分别展示，不按未经核对的汇率换算。</div>
+<section class="card"><div class="table-wrap"><table><thead><tr><th>模型 / API 名称</th><th>输入 / 百万 tokens</th><th>输出 / 百万 tokens</th><th>缓存命中输入 / 百万</th><th>示例月费</th><th>官方来源</th></tr></thead><tbody>
+<tr><td><code>deepseek-flash</code><small>当前对应 V4.1-Flash-1017</small></td><td>¥1 闲时 / ¥2 峰时</td><td>¥4 / ¥8</td><td>¥0.02 / ¥0.04</td><td class="cost">¥1.80–3.60</td><td><a href="https://api-docs.deepseek.com/zh-cn/quick_start/pricing/" target="_blank" rel="noopener noreferrer">DeepSeek</a></td></tr>
+<tr><td><code>deepseek-v4-pro</code><small>V4-Pro-0813</small></td><td>¥4.50 / ¥9</td><td>¥13.50 / ¥27</td><td>¥0.15 / ¥0.30</td><td class="cost">¥7.20–14.40</td><td><a href="https://api-docs.deepseek.com/zh-cn/quick_start/pricing/" target="_blank" rel="noopener noreferrer">DeepSeek</a></td></tr>
+<tr><td><code>qwen3.7-flash</code><small>北京地域；单次输入 ≤32K</small></td><td>¥0.20</td><td>¥0.80</td><td>隐式 ¥0.04<br>显式 ¥0.02</td><td class="cost">¥0.36</td><td><a href="https://help.aliyun.com/zh/model-studio/model-pricing" target="_blank" rel="noopener noreferrer">阿里云百炼</a></td></tr>
+<tr><td><code>doubao-seed-2-0-mini-260428</code><small>常规在线；单次输入 ≤32K</small></td><td>¥0.20</td><td>¥2.00</td><td>¥0.04</td><td class="cost">¥0.60</td><td><a href="https://docs.volcengine.com/docs/ark/model-pricing?lang=en&amp;redirect=1" target="_blank" rel="noopener noreferrer">火山方舟</a></td></tr>
+<tr><td><code>glm-5.3-flash</code><small>Z.AI 国际站，非国内人民币价</small></td><td>US$0.15</td><td>US$0.50</td><td>US$0.03</td><td class="cost">US$0.25</td><td><a href="https://docs.z.ai/guides/overview/pricing" target="_blank" rel="noopener noreferrer">Z.AI</a></td></tr>
+<tr><td><code>gpt-6-luna</code><small>Standard；单次输入 ≤272K</small></td><td>US$0.10</td><td>US$0.50</td><td>US$0.01</td><td class="cost">US$0.20</td><td><a href="https://developers.openai.com/api/docs/pricing" target="_blank" rel="noopener noreferrer">OpenAI</a></td></tr>
+<tr><td><code>claude-haiku-5-5</code><small>单次输入 ≤100K</small></td><td>US$0.10</td><td>US$0.50</td><td>US$0.01</td><td class="cost">US$0.20</td><td><a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener noreferrer">Anthropic</a></td></tr>
+<tr><td><code>claude-sonnet-5-5</code><small>1M上下文不额外加长上下文费</small></td><td>US$2.00</td><td>US$10.00</td><td>US$0.10</td><td class="cost">US$4.00</td><td><a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener noreferrer">Anthropic</a></td></tr>
+</tbody></table></div></section>
+<section class="card"><h2>怎样选，才适合这个助手</h2><p>先用 <strong>DeepSeek Flash 或通义千问 Flash</strong> 做小规模饮食问答试用，再用相同的真实问题比较是否遵循医嘱边界、回答清楚。这个建议基于国内接入便利性和已核对价格，尚未进行医疗问答质量评测。更贵的模型不自动意味着更安全。</p><p>提醒、读数保存、确认和固定异常规则都在本机执行，不必每次调用模型。模型只负责解释一般饮食问题。首版支持兼容 <code>/chat/completions</code> 的接口；表中列出价格不代表对应原生接口已全部接入验证，Claude 原生 Messages 接口尚未单独适配。</p><p>选择后，到工作台的“家庭设置 → 模型接口”填写官方 API 地址、模型名和自己的密钥，再启用。请先核对所在地域、账号可用性与数据处理条款，不将密钥发到微信群。</p></section>
+<section class="card"><h2>读价格表时需要区分的条件</h2><ul>
+<li>DeepSeek 峰时为北京时间工作日（法定节假日除外）09–12、14–18，其余闲时。实际费用按请求发生时间加权；表中范围不是套餐承诺。</li>
+<li>通义千问本行使用北京地域短输入档。32K–256K 的输入/输出为 ¥0.60/¥2.40，256K–1M 为 ¥1.20/¥4.80。<a href="https://help.aliyun.com/zh/model-studio/context-cache" target="_blank" rel="noopener noreferrer">显式缓存</a>创建按普通输入的125%收费，读取10%，TTL为5分钟；隐式命中20%，两类互斥。</li>
+<li>豆包本行是常规在线推理，非低优或精调价格。32K–128K 为 ¥0.40/¥4，128K–256K 为 ¥0.80/¥8；缓存存储另计 ¥0.017/百万 tokens/小时。模型ID可在<a href="https://docs.volcengine.com/docs/LakeAIService/Largemodelbilling?lang=zh" target="_blank" rel="noopener noreferrer">官方计费表</a>核对。</li>
+<li>GLM 是国际站美元价；国内站实时人民币价格本次未完成核验。缓存存储当前为限时免费，不保证持续。</li>
+<li>GPT-6 Luna 长输入档的输入/输出/缓存为 US$0.20/0.75/0.02。短输入档的30分钟/12小时缓存写入为 US$0.125/0.25；地区驻留处理可能另加10%。</li>
+<li>Claude Haiku 输入超过100K后，输入/输出/缓存为 US$0.50/2.50/0.05。Haiku的5分钟/1小时缓存写入为 US$0.125/0.20；Sonnet为 US$2.50/4。US-only推理另加10%。</li>
+<li>上下文分档按<strong>单次请求</strong>判断；用量包括系统提示、必要的聊天历史和可能计费的推理输出。免费额度、活动价格和批处理折扣不用于本表统一估算。</li>
+</ul></section><footer>价格核验：2026-10-25（北京时间）。以各服务商开通时的官方账单规则为准。此页不含医学质量排名，不承诺任何提供商的服务可用性。</footer>
+</main></body></html>

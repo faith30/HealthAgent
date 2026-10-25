@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#17645a">
+  <title>家人安心记 · 家庭健康助手</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#overview" aria-label="家人安心记首页">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M20 31S7 24 7 15.7C7 8.7 16 7 20 13c4-6 13-4.3 13 2.7C33 24 20 31 20 31Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M11 20h5l2-4 4 9 2-5h5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span><strong>家人安心记</strong><small>让日常照护轻一点</small></span>
+      </a>
+      <div class="nav-label">家庭工作台</div>
+      <nav class="navigation" role="tablist" aria-label="工作台页面" aria-orientation="vertical">
+        <button class="nav-item active" type="button" role="tab" aria-selected="true" id="tab-overview" aria-controls="panel-overview" data-tab="overview"><span class="nav-icon" aria-hidden="true">◫</span>照护概览</button>
+        <button class="nav-item" type="button" role="tab" aria-selected="false" id="tab-chat" aria-controls="panel-chat" data-tab="chat"><span class="nav-icon" aria-hidden="true">☏</span>对话试用</button>
+        <button class="nav-item" type="button" role="tab" aria-selected="false" id="tab-records" aria-controls="panel-records" data-tab="records"><span class="nav-icon" aria-hidden="true">▤</span>健康记录</button>
+        <button class="nav-item" type="button" role="tab" aria-selected="false" id="tab-reminders" aria-controls="panel-reminders" data-tab="reminders"><span class="nav-icon" aria-hidden="true">◷</span>提醒计划</button>
+        <button class="nav-item" type="button" role="tab" aria-selected="false" id="tab-settings" aria-controls="panel-settings" data-tab="settings"><span class="nav-icon" aria-hidden="true">⚙</span>家庭设置</button>
+      </nav>
+      <div class="sidebar-note"><span class="small-leaf" aria-hidden="true">✦</span><strong>陪伴，从一条记录开始</strong><p>记录留给家人，趋势带给医生。每一步都清楚可查。</p></div>
+      <div class="sidebar-footer"><span class="dot" id="server-dot"></span><span id="server-status">正在连接本地服务</span></div>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <div><div class="eyebrow" id="today-label">家庭健康助手</div><h1 id="page-title">照护概览</h1></div>
+        <div class="top-status"><span class="pill pill-sand" id="mode-pill">正在读取状态</span><span class="pill pill-gray" id="bridge-pill">微信状态待确认</span><span class="avatar" id="avatar">家</span></div>
+      </header>
+      <div id="connection-banner" class="notice notice-error" hidden role="alert"></div>
+      <div id="test-banner" class="notice notice-info"><span class="notice-icon" aria-hidden="true">i</span><span id="mode-notice">当前为本地试用。配置完成并连接微信后，才能向家庭群发送消息。</span></div>
+
+      <section id="panel-overview" class="tab-panel" role="tabpanel" aria-labelledby="tab-overview">
+        <div class="overview-grid">
+          <article class="hero-card">
+            <div class="hero-copy"><span class="hero-tag">用简单的习惯，照顾重要的人</span><h2>每天一点关心，<br>让家人更安心。</h2><p id="hero-profile">为爸爸记录血压、血糖与日常提醒。</p><button type="button" class="button button-light" data-go="chat">试着记一条 <span aria-hidden="true">↗</span></button></div>
+            <div class="hero-art" aria-hidden="true"><div class="art-ring ring-one"></div><div class="art-ring ring-two"></div><div class="art-note"><div class="art-heart">♡</div><span></span><span></span><span class="short"></span><div class="art-check">✓</div></div><div class="art-spark">✦</div></div>
+          </article>
+          <article class="card next-card"><div class="section-kicker">今日计划</div><h2 id="next-title">还没有启用的提醒</h2><p class="muted" id="next-detail">先按医嘱安排适合爸爸的测量时间。</p><div id="next-reminder-list" class="mini-list"></div><button class="text-button" type="button" data-go="reminders">管理提醒计划 <span aria-hidden="true">→</span></button></article>
+        </div>
+        <div class="stat-grid">
+          <article class="stat-card"><span class="stat-icon stat-green" aria-hidden="true">✓</span><div><span class="stat-label" id="stat-today-label">今日已确认记录</span><strong id="stat-today">0<small>条</small></strong></div></article>
+          <article class="stat-card"><span class="stat-icon stat-amber" aria-hidden="true">◷</span><div><span class="stat-label">等你核对的记录</span><strong id="stat-pending">0<small>条</small></strong></div></article>
+          <article class="stat-card"><span class="stat-icon stat-coral" aria-hidden="true">!</span><div><span class="stat-label">待家属处理</span><strong id="stat-alerts">0<small>项</small></strong></div></article>
+        </div>
+        <div class="content-grid">
+          <div class="main-column">
+            <article class="card"><div class="card-heading"><div><div class="section-kicker">每次测量，都认真记下</div><h2>最近的健康记录</h2></div><button type="button" class="text-button" data-go="records">全部记录 →</button></div><div class="reading-grid"><div class="reading"><span class="reading-label">血压</span><div id="latest-bp" class="reading-value">—<small>mmHg</small></div><p id="latest-bp-time" class="muted">暂无已确认记录</p></div><div class="reading"><span class="reading-label">血糖</span><div id="latest-glucose" class="reading-value">—<small>mmol/L</small></div><p id="latest-glucose-time" class="muted">暂无已确认记录</p></div></div><p class="footnote">这里显示最近一次记录，不代表已达标；目标范围以个人医嘱为准。</p></article>
+            <article class="card"><div class="card-heading"><div><div class="section-kicker">确认后，才写入健康记录</div><h2>待核对读数</h2></div><span class="count-badge" id="pending-badge">0</span></div><div id="overview-pending"></div></article>
+          </div>
+          <div class="side-column">
+            <article class="card"><div class="card-heading"><div><div class="section-kicker">让家人及时接手</div><h2>需要关注</h2></div><span class="outline-icon" aria-hidden="true">♡</span></div><div id="alert-list"></div></article>
+            <article class="card tip-card"><span class="section-kicker">每天一个小习惯</span><h2>先记清，再判断</h2><p>报血糖时，加上“空腹”或“餐后多久”和单位。不同时间测的数值，要分开看。</p><div class="tip-rule"></div><p class="small muted">检测安排、饮食份量和异常处理，先采用医生给爸爸的方案。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="panel-chat" class="tab-panel" role="tabpanel" aria-labelledby="tab-chat" hidden>
+        <div class="content-grid chat-grid">
+          <article class="card chat-card"><div class="chat-heading"><span class="chat-bot-avatar" aria-hidden="true">安</span><div><h2>安心小助手</h2><p id="chat-model-label" class="muted">本地演示 · 未调用云端模型</p></div><span class="pill pill-sand">对话试用</span></div><div class="chat-thread" id="chat-thread" aria-live="polite"><div class="chat-message assistant"><div class="bubble">你好，可以输入读数、问饮食，也可以发送血压计、血糖仪或食物照片。这里的对话不会发到微信群；启用云端接口后，相关内容会交给配置的模型处理。识别的读数需要核对时间和数值后才能保存。</div></div></div><form id="chat-form" class="chat-composer"><div class="image-preview" id="image-preview" hidden><img id="image-preview-img" alt="待发送图片预览"><div class="image-preview-info"><strong id="image-file-name"></strong><span id="image-file-size" class="small muted"></span><button type="button" id="remove-image" class="text-button">移除图片</button></div></div><label for="chat-input" class="sr-only">输入读数或饮食问题</label><textarea id="chat-input" rows="3" maxlength="2000" placeholder="输入读数、饮食问题，或为照片补充说明（选填）"></textarea><div class="attachment-toolbar"><button type="button" id="attach-image" class="button button-secondary button-small"><span aria-hidden="true">▧</span> 添加照片</button><input type="file" id="image-input" accept="image/jpeg,image/png,image/webp" hidden><span class="attachment-limit" id="image-limit">JPEG / PNG / WebP · 单张不超过 8 MB</span></div><p class="image-privacy" id="image-privacy">选择后先在本机预览。点击发送时，图片会发给你配置的识图服务；本地服务不保存原图。请避免包含无关个人信息。</p><p class="image-availability" id="image-availability" role="status">正在读取识图配置…</p><div class="composer-bottom"><span class="small muted">Enter 换行，Ctrl / ⌘ + Enter 发送</span><button class="button button-primary" type="submit" id="chat-send">发送 <span aria-hidden="true">↑</span></button></div></form></article>
+          <div class="side-column"><article class="card"><div class="section-kicker">从这些示例开始</div><h2>看看它如何回应</h2><p class="muted small">以下都是测试示例，不是爸爸的真实数据。点击只填入输入框。</p><div class="example-list"><button type="button" data-example="血压 138/82 mmHg，空腹血糖 7.2 mmol/L"><span>记录一组读数</span><small>血压 + 空腹血糖</small></button><button type="button" data-example="糖尿病可以吃水果吗？"><span>问一个饮食问题</span><small>水果应该怎么安排？</small></button><button type="button" data-example="空腹血糖 7.2"><span>试试信息不完整时</span><small>看看是否会请你补充单位</small></button></div></article><article class="card soft-card"><h2>它能帮上什么忙</h2><ul class="plain-list"><li>把收到的读数整理成待确认记录</li><li>提供简短、通俗的日常饮食提示</li><li>按已填写的医嘱规则提示家属</li></ul><p class="small muted">不自动改药或诊断。真正的测量、家属接手和医疗处置仍需要人完成。</p></article></div>
+        </div>
+      </section>
+
+      <section id="panel-records" class="tab-panel" role="tabpanel" aria-labelledby="tab-records" hidden>
+        <article class="card"><div class="card-heading"><div><div class="section-kicker">原始数据，留给家人和医生</div><h2>健康记录</h2></div><a class="button button-secondary" href="/api/export.csv" download="健康记录.csv">导出 CSV <span aria-hidden="true">↓</span></a></div><div class="filter-row"><label for="record-filter">记录类型</label><select id="record-filter"><option value="all">全部记录</option><option value="bp">血压</option><option value="glucose">血糖</option></select><span id="record-total" class="muted small"></span></div><div class="table-wrap"><table><thead><tr><th scope="col">测量时间</th><th scope="col">类型</th><th scope="col">读数</th><th scope="col">测量情境</th><th scope="col">来源</th></tr></thead><tbody id="records-body"></tbody></table></div><div id="records-empty"></div><p class="footnote">只展示已确认记录。导出文件包含健康信息，请仅分享给需要了解情况的家人和医生。</p></article>
+        <article class="card spaced-card"><div class="card-heading"><div><div class="section-kicker">每条发送任务都有状态</div><h2>消息发送记录</h2></div></div><div id="outbox-list"></div><p class="footnote">“已发送”仅表示接入程序报告发送成功，不代表家人已经读到或接手。</p></article>
+      </section>
+
+      <section id="panel-reminders" class="tab-panel" role="tabpanel" aria-labelledby="tab-reminders" hidden>
+        <div class="section-intro"><h2>让提醒配合爸爸的作息</h2><p>按医生安排填写测量时间。系统需要保持运行，微信通道也需要在线。</p></div>
+        <form id="reminders-form" class="card"><div class="card-heading"><h2>每日提醒</h2><button type="button" id="add-reminder" class="button button-secondary">＋ 新增提醒</button></div><div id="reminder-editor"></div><div class="form-actions"><button class="button button-primary" type="submit">保存提醒计划</button><button class="button button-secondary" type="button" id="check-scheduler">检查当前到期任务</button></div><p class="footnote">“检查”只处理此时到期的任务。测试模式中的任务不会发送到微信。</p></form>
+        <article class="card soft-card spaced-card"><h2>漏报时，温和地跟进</h2><p>等待时间结束仍未收到对应记录时，提醒家属查看。未收到记录只代表“尚未报数”，不能据此判断爸爸没有测量。</p><p class="small muted">饮食小贴士和每日菜单不产生漏测提醒。正式使用前，请在设置中填写正确的群名、爸爸和家属的显示名。</p></article>
+      </section>
+
+      <section id="panel-settings" class="tab-panel" role="tabpanel" aria-labelledby="tab-settings" hidden>
+        <div class="section-intro"><h2>把爸爸的实际情况放在前面</h2><p>不知道的信息可以留空。保存到这台电脑的配置里，不会自动上传病历。</p></div>
+        <form id="profile-form" class="card setting-card"><div class="card-heading"><div><span class="section-kicker">01 · 家人资料</span><h2>基本情况与医嘱</h2></div></div><div class="form-grid"><label>称呼<input name="name" maxlength="30" required placeholder="爸爸"></label><label>年龄<input name="age" type="number" min="1" max="120" placeholder="可留空"></label><label>脑梗距今（月）<input name="stroke_months" type="number" min="0" max="600"></label><label>吞咽情况<select name="swallowing"><option value="normal_reported">目前吃喝正常（家属提供）</option><option value="difficulty">有困难或呛咳</option><option value="unknown">暂不清楚</option></select></label><label>肾功能情况<select name="renal_status"><option value="unknown">暂不清楚</option><option value="normal">医生确认无相关限制</option><option value="impaired">有肾病或饮食限制</option></select></label><label>过敏／不能吃的食物<input name="allergies" maxlength="500" placeholder="如无相关信息，可留空"></label><label class="span-two">正在使用的药物<textarea name="medications" rows="2" maxlength="2000" placeholder="按药盒或出院记录填写药名、用法；不清楚先留空"></textarea></label><label class="span-two">医生给出的测量、饮食及处理方案<textarea name="doctor_plan" rows="4" maxlength="5000" placeholder="记录医嘱原意，例如测量时间、已确认的饮食份量、复诊安排。"></textarea></label></div><div class="form-actions"><button type="submit" class="button button-primary">保存家人资料</button></div></form>
+        <form id="targets-form" class="card setting-card"><div class="card-heading"><div><span class="section-kicker">02 · 按个人医嘱设置</span><h2>需要提示家属的数值</h2></div></div><p class="muted">请填写医生为爸爸确定的范围。留空表示尚未设置个人规则，不会把通用目标当成爸爸的目标。</p><div class="form-grid three-columns"><label>收缩压上限（mmHg）<input name="bp_systolic_high" type="number" min="40" max="300" step="1" placeholder="尚未设置"></label><label>舒张压上限（mmHg）<input name="bp_diastolic_high" type="number" min="20" max="200" step="1" placeholder="尚未设置"></label><label>空腹血糖上限（mmol/L）<input name="glucose_fasting_high" type="number" min="0.1" max="60" step="0.1" placeholder="尚未设置"></label><label>收缩压下限（mmHg）<input name="bp_systolic_low" type="number" min="40" max="300" step="1" placeholder="尚未设置"></label><label>舒张压下限（mmHg）<input name="bp_diastolic_low" type="number" min="20" max="200" step="1" placeholder="尚未设置"></label><label>餐后2小时血糖上限（mmol/L）<input name="glucose_postmeal_high" type="number" min="0.1" max="60" step="0.1" placeholder="尚未设置"></label></div><p class="footnote">个人范围不关闭急症提示。出现新发卒中表现或意识异常时，不应等待机器人判断。</p><div class="form-actions"><button type="submit" class="button button-primary">保存医嘱规则</button></div></form>
+        <form id="meal-plan-form" class="card setting-card"><div class="card-heading"><div><span class="section-kicker">03 · 每天吃什么</span><h2>一周菜单与份量</h2></div></div><p class="muted">先把医生或营养师确认的餐食安排填在这里。系统按星期推送已确认的内容，不会根据一次血糖临时编造菜单。</p><div class="meal-grid" id="meal-plan-editor"></div><label class="check-line live-check"><input type="checkbox" name="confirmed"><span>已按医生／营养师意见核对本周菜单及份量</span></label><p class="footnote">有内容且已核对的当天菜单，才会用于“每日菜单”提醒。留空的日期不会自动生成食谱。</p><div class="form-actions"><button type="submit" class="button button-primary">保存一周菜单</button></div></form>
+        <form id="model-form" class="card setting-card"><div class="card-heading"><div><span class="section-kicker">04 · 可选的大模型接口</span><h2>饮食问答的回答方式</h2><a class="text-button" href="/prices.html" target="_blank" rel="noopener">查看模型费用对比 ↗</a></div><span class="pill pill-gray" id="model-key-status">未配置密钥</span></div><label class="check-line"><input type="checkbox" name="enabled"><span>启用云端模型回答</span></label><p class="muted small">开启后，相关提问和必要的家人资料会发给你配置的模型服务。未开启时，使用有限的本地演示回答。</p><div class="form-grid"><label class="span-two">API 地址<input name="base_url" type="url" autocomplete="off" placeholder="例如 https://api.deepseek.com/v1"></label><label>模型名称<input name="model" autocomplete="off" maxlength="200" placeholder="填写服务商提供的模型名"></label><label>API 密钥<input name="api_key" type="password" autocomplete="new-password" placeholder="留空保留已存密钥"></label></div><p class="footnote">密钥不会显示在页面或返回到浏览器。请在本机填写，不用发到聊天或家庭群。</p><div class="form-actions"><button type="submit" class="button button-primary">保存模型配置</button><button type="button" class="text-button" id="clear-api-key">清除本机密钥</button></div></form>
+        <form id="vision-form" class="card setting-card"><div class="card-heading"><div><span class="section-kicker">05 · 照片识别</span><h2>血压计、血糖仪和食物照片</h2></div><span class="pill pill-gray" id="vision-key-status">未配置识图密钥</span></div><label class="check-line"><input type="checkbox" name="enabled"><span>启用云端图片识别</span></label><p class="muted small">图片会发送到下方配置的识图接口。本地服务不保存原图，识别出的读数仍需要你核对并补充实际测量时间。</p><div class="notice notice-info vision-model-tip">DeepSeek Flash 用于识图，文字对话可以继续使用 Pro。当前 DeepSeek Pro 不支持图片输入。</div><div class="form-grid"><label class="span-two">识图 API 地址<input name="base_url" type="url" autocomplete="off" placeholder="例如 https://api.deepseek.com"></label><label>识图模型名称<input name="model" autocomplete="off" maxlength="200" placeholder="例如 deepseek-flash"></label><label>独立识图 API 密钥<input name="api_key" type="password" autocomplete="new-password" placeholder="留空保留已存密钥"></label></div><label class="check-line vision-reuse"><input type="checkbox" name="reuse_text_key"><span>复用文字模型的 API 密钥</span></label><p class="footnote" id="vision-origin-note">只有文字与识图接口的协议、域名和端口一致时，才能复用密钥。</p><p class="footnote">识图开关与文字模型分别保存。取消复用时，请填写识图服务自己的密钥；密钥不会返回页面。</p><div class="form-actions"><button type="submit" class="button button-primary">保存识图配置</button><button type="button" class="text-button" id="clear-vision-api-key">清除独立识图密钥</button></div></form>
+        <form id="wechat-form" class="card setting-card"><div class="card-heading"><div><span class="section-kicker">06 · 普通微信家庭群</span><h2>微信连接</h2></div><span class="pill pill-gray" id="settings-bridge">未连接</span></div><p class="muted">填写名称不会自动接入微信。还需要在本机配置并启动配套微信接入程序；需要匹配的客户端与接入授权。</p><div class="form-grid"><label class="span-two">唯一的家庭群名称<input name="group_name" maxlength="100" placeholder="与微信中显示的群名完全一致"></label><label>爸爸的群内显示名<input name="patient_sender" maxlength="100" placeholder="只接收此人的测量记录"></label><label>接手家属的群内显示名<input name="caregiver_sender" maxlength="100" placeholder="异常或漏报时提醒此人"></label></div><label class="check-line live-check"><input type="checkbox" name="live_enabled"><span>允许正式微信收发</span></label><p class="footnote">开启后，已连接的接入程序可以处理真实群消息和发送任务。只作用于指定家庭群。首次开启前，应先完成测试群验证。</p><div class="form-actions"><button type="submit" class="button button-primary">保存微信设置</button></div></form>
+      </section>
+      <footer class="page-footer"><span>家人安心记 · 家庭记录与提醒助手</span><span>参考资料：<a href="https://www.cdc.gov/diabetes/diabetes-testing/monitoring-blood-sugar.html" target="_blank" rel="noopener noreferrer">血糖记录</a><span aria-hidden="true"> · </span><a href="https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home" target="_blank" rel="noopener noreferrer">家庭测压</a></span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
